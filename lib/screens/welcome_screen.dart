@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:test_trek_tracer/delayed_animation.dart';
 import 'package:test_trek_tracer/rounded_button.dart';
 import 'package:test_trek_tracer/screens/register_screen.dart';
-
-import '../main_button.dart';
 import '../style/font.dart';
 import '../style/spacings.dart';
 import 'connexion_screen.dart';
@@ -22,14 +20,6 @@ class WelcomeScreen extends StatelessWidget {
           vertical: 30,
           horizontal: 30,
         ),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("asset/img/dark_blue.png"),
-            fit: BoxFit.cover,
-          ),
-
-        ),
-
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: kVerticalPaddingL),

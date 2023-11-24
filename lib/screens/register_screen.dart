@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:test_trek_tracer/delayed_animation.dart';
-import 'package:test_trek_tracer/main_button.dart';
-import 'package:test_trek_tracer/screens/home_screen.dart';
 import 'package:test_trek_tracer/style/colors.dart';
 import 'package:test_trek_tracer/style/spacings.dart';
 import 'package:test_trek_tracer/text_input.dart';
+
+import '../style/font.dart';
+import 'home_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const routeName = '/register';
@@ -19,11 +20,6 @@ class RegisterScreen extends StatelessWidget {
       body: SizedBox(
         width: MediaQuery.of(context).size.width, //pour récup taille écran
         height: MediaQuery.of(context).size.height,
-        // decoration: const BoxDecoration(
-        //     image: DecorationImage(
-        //   image: AssetImage("asset/img/background-gradient-lights.jpg"),
-        //   fit: BoxFit.fill,
-        // )),
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: kVerticalPadding),
@@ -75,9 +71,20 @@ class RegisterScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                MainButton(text: "s'inscrire", onTap: (){
-                  Navigator.pushNamed(context, HomeScreen.routeName);
-                })
+                DelayedAnimation(delay: isLogin ? 2000:2500,
+                  child: ElevatedButton(onPressed: () {Navigator.pushNamed(context, HomeScreen.routeName, arguments: {'isLogin': true});}, style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    backgroundColor: kButtonColor,
+                    padding: const EdgeInsets.all(13),
+                  ), child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 10,),
+                      Text('connexion',
+                        style: kLabelButton,)
+                    ],
+                  )),
+                )
               ],
             ),
           ),

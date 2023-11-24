@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:test_trek_tracer/main_button.dart';
 import 'package:test_trek_tracer/routes.dart';
-import 'package:test_trek_tracer/style/font.dart';
-import 'package:test_trek_tracer/style/spacings.dart';
 
 void main() {
   runApp(MyApp());

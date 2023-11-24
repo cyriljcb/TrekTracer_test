@@ -7,7 +7,6 @@ import 'package:test_trek_tracer/style/colors.dart';
 
 import '../delayed_animation.dart';
 import '../login_button.dart';
-import '../main_button.dart';
 import '../style/font.dart';
 import '../style/spacings.dart';
 
@@ -54,34 +53,6 @@ class ConnexionScreen extends StatelessWidget {
                     "asset/img/coureur1.png",
                     width: kProfileSize ,
                   )),
-              // Column(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [
-              //     DelayedAnimation(
-              //         delay: 2000,
-              //         child: MainButton(
-              //           text: "s'inscrire",
-              //           onTap: () {
-              //             Navigator.pushNamed(context, RegisterScreen.routeName,
-              //                 arguments: {'isLogin': false});
-              //           },
-              //           isMain: false,
-              //         )),
-              //     const SizedBox(
-              //       height: 10,
-              //     ),
-              //     DelayedAnimation(
-              //         delay: 2500,
-              //         child: MainButton(
-              //           text: "se connecter",
-              //           onTap: () {
-              //             Navigator.pushNamed(context, RegisterScreen.routeName,
-              //                 arguments: {'isLogin': true});
-              //           },
-              //           isMain: false,
-              //         ))
-              //   ],
-              // )
               const Column(
                 children: [
                   DelayedAnimation(delay: 2500, child: LoginButton())
