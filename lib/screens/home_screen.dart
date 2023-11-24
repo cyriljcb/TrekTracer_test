@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:test_trek_tracer/screens/parametre_screen.dart';
 import 'package:test_trek_tracer/screens/profile_screen.dart';
+import 'package:test_trek_tracer/screens/start_button.dart';
 import 'historique_screen.dart';
+import 'package:location/location.dart' as loc;
 
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
 
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,25 +70,53 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(),
+          padding: const EdgeInsets.symmetric(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Center(
-                child: Text('Contenu principal de l\'application'),
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     StartButton(text: "démarrer", adem: true,),
-              //   ],
+              // Center(
+              //   child: Text('Contenu principal de l\'application'),
               // ),
+
+              Expanded(
+                child: FlutterMap(
+                  options: const MapOptions(
+                    initialCenter: LatLng(50.632557, 5.579666),
+                    initialZoom: 9.2,
+                  ),
+                  children: [
+                    TileLayer(
+                      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      userAgentPackageName: 'com.example.app',
+                    ),
+
+                    RichAttributionWidget(
+                      attributions: [
+                        TextSourceAttribution(
+                          'OpenStreetMap contributors',
+                          onTap: () =>
+                              launchUrl(Uri.parse('https://openstreetmap.org/copyright')),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  StartButton(text: "démarrer", adem: true,),
+                ],
+              ),
+
             ],
           ),
         ),
       ),
     );
   }
+
+  launchUrl(Uri parse) {}
 }
