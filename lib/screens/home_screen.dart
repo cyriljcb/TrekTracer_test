@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:test_trek_tracer/screens/parametre_screen.dart';
 import 'package:test_trek_tracer/screens/profile_screen.dart';
 import 'package:test_trek_tracer/screens/start_button.dart';
+import '../OpenStreetMap/affichage_map.dart';
 import 'historique_screen.dart';
 import 'package:location/location.dart' as loc;
 
@@ -70,9 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(),
+          padding: EdgeInsets.symmetric(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -81,30 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
               // ),
 
               Expanded(
-                child: FlutterMap(
-                  options: const MapOptions(
-                    initialCenter: LatLng(50.632557, 5.579666),
-                    initialZoom: 9.2,
-                  ),
-                  children: [
-                    TileLayer(
-                      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName: 'com.example.app',
-                    ),
-
-                    RichAttributionWidget(
-                      attributions: [
-                        TextSourceAttribution(
-                          'OpenStreetMap contributors',
-                          onTap: () =>
-                              launchUrl(Uri.parse('https://openstreetmap.org/copyright')),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  child: AfficheMap(),
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   StartButton(text: "démarrer", adem: true,),

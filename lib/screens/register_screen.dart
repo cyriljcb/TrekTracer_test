@@ -22,70 +22,85 @@ class RegisterScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: kVerticalPadding),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if(!isLogin)
-                  Column(
-                    children: [
-                      DelayedAnimation(delay: 1000, child: TextInput(
-                        prefixIcon: Icons.person,
-                        hintText: 'Entrez votre nom d\'utilisateur',
-
-                        labelText: 'Nom d\'utilisateur',
-                        validator: (String? value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Veuillez renseigner votre prénom!';
-                          }
-                          return null;
+            padding: const EdgeInsets.symmetric(vertical: kVerticalPadding),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (!isLogin)
+                    Column(
+                      children: [
+                        DelayedAnimation(
+                          delay: 1000,
+                          child: TextInput(
+                            prefixIcon: Icons.person,
+                            hintText: 'Entrez votre nom d\'utilisateur',
+                            labelText: 'Nom d\'utilisateur',
+                            validator: (String? value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'Veuillez renseigner votre prénom!';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  DelayedAnimation(
+                    delay: isLogin ? 1000 : 2000,
+                    child: TextInput(
+                      prefixIcon: Icons.person,
+                      hintText: 'entrez votre adresse email',
+                      labelText: 'Email',
+                      validator: (String? value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Veuillez renseigner votre adresse Email!';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  DelayedAnimation(
+                    delay: isLogin ? 1500 : 2500,
+                    child: TextInput(
+                      prefixIcon: Icons.lock,
+                      hintText: 'entrez votre mot de passe',
+                      labelText: 'Mot de passe',
+                      validator: (String? value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Veuillez renseigner votre mot de passe!';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  DelayedAnimation(
+                    delay: isLogin ? 2000 : 2500,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, HomeScreen.routeName,
+                              arguments: {'isLogin': true});
                         },
-                      ),),
-                    ],
-                  ),
-                DelayedAnimation(
-                  delay: isLogin ? 1000:2000,
-                  child: TextInput(
-                    prefixIcon: Icons.person,
-                    hintText: 'entrez votre adresse email',
-                    labelText: 'Email',
-                    validator: (String? value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Veuillez renseigner votre adresse Email!';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                DelayedAnimation(
-                  delay: isLogin ? 1500:2500,
-                  child: TextInput(
-                    prefixIcon: Icons.lock,
-                    hintText: 'entrez votre mot de passe',
-                    labelText: 'Mot de passe',
-                    validator: (String? value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Veuillez renseigner votre mot de passe!';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                DelayedAnimation(delay: isLogin ? 2000:2500,
-                  child: ElevatedButton(onPressed: () {Navigator.pushNamed(context, HomeScreen.routeName, arguments: {'isLogin': true});}, style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    backgroundColor: kButtonColor,
-                    padding: const EdgeInsets.all(13),
-                  ), child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(width: 10,),
-                      Text('connexion',
-                        style: kLabelButton,)
-                    ],
-                  )),
-                )
-              ],
+                        style: ElevatedButton.styleFrom(
+                          shape: const StadiumBorder(),
+                          backgroundColor: kButtonColor,
+                          padding: const EdgeInsets.all(13),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'connexion',
+                              style: kLabelButton,
+                            )
+                          ],
+                        )),
+                  )
+                ],
+              ),
             ),
           ),
         ),
